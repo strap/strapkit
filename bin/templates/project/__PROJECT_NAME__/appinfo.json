@@ -1,0 +1,17 @@
+{
+  "uuid": "__UUID__",
+  "shortName": "__PROJECT_NAME__",
+  "longName": "__PROJECT_NAME__",
+  "companyName": "MakeAwesomeHappen",
+  "versionCode": 1,
+  "versionLabel": "1.0.0",
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": []
+  }
+}

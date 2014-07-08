@@ -1,0 +1,15 @@
+{
+  "name": "strapkit_pebble",
+  "version": "0.1.0",
+  "description": "tools for building Pebble apps in StrapKit projects",
+  "main": "bin/create",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strap/strapkit_pebble.git"
+  },
+  "author": "Strap",
+  "bugs": {
+    "url": "https://github.com/strap/strapkit_pebble/issues"
+  },
+  "homepage": "https://github.com/strap/strapkit_pebble"
+}
