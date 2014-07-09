@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:cdv = "http://strapkit.straphq.com/ns/1.0"
+        id        = "com.straphq.hellostrapkit"
+        version   = "0.0.1">
+    <name>Hello StrapKit</name>
+
+    <description>
+        A sample StrapKit application.
+    </description>
+
+    <author href="http://straphq.com" email="support@straphq.com">
+        Strap Team
+    </author>
+
+    <content src="index.js" />
+
+    <access origin="*" />
+</widget>
