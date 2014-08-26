@@ -39,7 +39,6 @@ function usage (){
   exit 1
 }
 
-echo "in create!!!!!!"
 INCLUDE_METRICS=1
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -99,12 +98,12 @@ mkdir -p "$PROJECT_PATH"
 if [ $INCLUDE_METRICS == 1 ]; then
 cp -r "$PROJECT_TEMPLATE_DIR/__PROJECT_NAME__SM" "$PROJECT_PATH/$PROJECT_NAME"
 else 
-cp -r "$PROJECT_TEMPLATE_DIR/__PROJECT_NAME__PEBBLEJS" "$PROJECT_PATH/$PROJECT_NAME"
+cp -r "$PROJECT_TEMPLATE_DIR/__PROJECT_NAME__" "$PROJECT_PATH/$PROJECT_NAME"
 fi
 
 
 R=$PROJECT_PATH/$PROJECT_NAME
-# mv "$R/src/__PROJECT_NAME__PEBBLEJS.c" "$R/src/$PROJECT_NAME.c"
+mv "$R/src/__PROJECT_NAME__.c" "$R/src/$PROJECT_NAME.c"
 
-"$BINDIR/replaces" "$R/appinfo.json"     __PROJECT_NAME__PEBBLEJS "$PROJECT_NAME"
+"$BINDIR/replaces" "$R/appinfo.json"     __PROJECT_NAME__ "$PROJECT_NAME"
 "$BINDIR/replaces" "$R/appinfo.json"     __UUID__ `uuidgen`

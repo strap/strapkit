@@ -14,3 +14,4 @@ StrapKit Pebble is the library that generates the Pebble code for a StrapKit-bas
         <project_template_dir>: Path to project template (override).
 
 Licensed under Apache 2.0. Portions derived from the scripts included with Apache Cordova.
+
