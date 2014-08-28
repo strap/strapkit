@@ -44,7 +44,7 @@ Command-line Flags/Options
 
 Example usage
 
-    Basic Format of starpkit create
+    Basic Format of strapkit create
     $ strapkit create <path_to_new_project> <package_name> <project_name>
 
     $ strapkit create ~/Desktop/testproject com.straphq.testproject TestProject
