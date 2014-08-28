@@ -43,12 +43,14 @@ Command-line Flags/Options
                                                 including output of sub-commands StrapKit invokes
 
 Example usage
+
     Basic Format of starpkit create
     $ strapkit create <path_to_new_project> <package_name> <project_name>
 
     $ strapkit create ~/Desktop/testproject com.straphq.testproject TestProject
     OR
     $ strapkit create TestProject
+
     $ cd TestProject
     $ strapkit platform add pebble
     $ strapkit build
