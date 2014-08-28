@@ -14,34 +14,28 @@ function strapkitPebbleMapGenerator(type,pebblejs){
 	return function(config){
 		return Accel[pebblejs](config);
 	};
-
 }
 
 (function(){
-	var mappings = {
+	var uiMappings = {
 		'view' : 'Card',
 		'menu' : 'Menu',
 		'window' : 'Window',
 		'text' : 'Text'
 	};
-
-	for(var strapkitMethod in mappings ){
-		var pebblejs = mappings[strapkitMethod];
+	var strapkitMethod, pebblejs;
+	for(strapkitMethod in uiMappings ){
+		pebblejs = uiMappings[strapkitMethod];
 		strapkit.ui[strapkitMethod] = strapkitPebbleMapGenerator( 'ui', pebblejs );
-
 	}
-}());
-
-(function(){
+	
 	Accel.init();
-	var mappings = {
-	};
-
-	for(var strapkitMethod in mappings ){
-		var pebblejs = mappings[strapkitMethod];
+	var sensorMappings = {};
+	for(strapkitMethod in sensorMappings ){
+		pebblejs = sensorMappings[strapkitMethod];
 		strapkit.ui[strapkitMethod] = strapkitPebbleMapGenerator( 'accel', pebblejs );
-
 	}
+
 }());
 
 module.exports = strapkit; 
