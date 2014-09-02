@@ -1,1 +1,0 @@
-Simple Hello World application
