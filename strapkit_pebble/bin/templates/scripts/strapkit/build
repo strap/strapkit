@@ -27,4 +27,4 @@ STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 PROJECT_PATH="$(dirname "$STRAPKIT_PATH")"
 echo $PROJECT_PATH
 echo $STRAPKIT_PATH
-cat "$( ../../"$PROJECT_PATH"/js/index.js )"
+ls ../../
