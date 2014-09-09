@@ -102,7 +102,8 @@ exports = module.exports = function prepare(options) {
                 exports._mergeXml(cfg.doc.getroot(), platform_cfg.doc.getroot(), platform, true);
                 platform_cfg.write();
 
-                return parser.update_project(cfg);
+                // return parser.update_project(cfg);
+                return parser;
             });
         })).then(function() {
             return hooks.fire('after_prepare', options);
