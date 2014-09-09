@@ -108,3 +108,6 @@ R=$PROJECT_PATH/$PROJECT_NAME
 
 "$BINDIR/replaces" "$R/appinfo.json"     __PROJECT_NAME__PEBBLEJS "$PROJECT_NAME"
 "$BINDIR/replaces" "$R/appinfo.json"     __UUID__ `uuidgen`
+
+# Finally copy the scripts
+cp -r "$SCRIPT_TEMPLATE_DIR"/* "$PROJECT_PATH/"
