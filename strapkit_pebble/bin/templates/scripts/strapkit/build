@@ -28,7 +28,7 @@ PROJECT_PATH="$(dirname "$STRAPKIT_PATH")"
 PROJECT_NAME=$( basename $( pwd -P ) )
 
 indexjs="./js/index.js"
-appjs="./platforms/pebble/$PROJECT_NAME/src/js"
+appjs="./platforms/pebble/$PROJECT_NAME/src/js/app.js"
 cp -p $indexjs $appjs
 
 ls $appjs
