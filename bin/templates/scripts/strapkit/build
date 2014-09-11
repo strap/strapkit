@@ -27,8 +27,12 @@ STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 PROJECT_PATH="$(dirname "$STRAPKIT_PATH")"
 PROJECT_NAME=$( basename $( pwd -P ) )
 
+# copy index.js to pebble subdir as app.js
 indexjs="./js/index.js"
 appjs="./platforms/pebble/$PROJECT_NAME/src/js/app.js"
 cp -p $indexjs $appjs
 
-ls $appjs
+# run pebble build cmd
+pebbleproj="./platforms/pebble/$PROJECT_NAME"
+cd $pebbleproj
+pebble build
