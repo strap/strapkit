@@ -25,10 +25,7 @@
 
 STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 PROJECT_PATH="$(dirname "$STRAPKIT_PATH")"
+PROJECT_NAME=$( basename $( pwd -P ) )
 
-echo $0
-echo $( pwd -P )
-echo $STRAPKIT_PATH
-echo $PROJECT_PATH
-ls
-# cp -p 
+echo $PROJECT_NAME
+# cp -p ./js/index.js ./platforms/
