@@ -27,5 +27,8 @@ STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 PROJECT_PATH="$(dirname "$STRAPKIT_PATH")"
 PROJECT_NAME=$( basename $( pwd -P ) )
 
-echo $PROJECT_NAME
-# cp -p ./js/index.js ./platforms/
+indexjs="./js/index.js"
+appjs="./platforms/pebble/$PROJECT_NAME/src/js"
+cp -p $indexjs $appjs
+
+ls $appjs
