@@ -20,11 +20,14 @@
 #
 
 #
-# compile and launch a Cordova/iOS project to the simulator
+# compile a Strapkit/Pebble project
 #
 
 STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 PROJECT_PATH="$(dirname "$STRAPKIT_PATH")"
-echo $PROJECT_PATH
+
+echo $0
+echo $( pwd -P )
 echo $STRAPKIT_PATH
-ls ../
+echo $PROJECT_PATH
+# cp -p 
