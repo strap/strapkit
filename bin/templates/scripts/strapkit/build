@@ -30,4 +30,5 @@ echo $0
 echo $( pwd -P )
 echo $STRAPKIT_PATH
 echo $PROJECT_PATH
+ls
 # cp -p 
