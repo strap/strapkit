@@ -114,7 +114,7 @@ module.exports = function CLI(inputArgs) {
         throw new StrapkitError('StrapKit does not know ' + cmd + '; try help for a list of all the available commands.');
     }
 
-    if (cmd == 'emulate' || cmd == 'build' || cmd == 'prepare' || cmd == 'compile' || cmd == 'run') {
+    if (cmd == 'install' || cmd == 'emulate' || cmd == 'build' || cmd == 'prepare' || cmd == 'compile' || cmd == 'run') {
         // Filter all non-platforms into options
         var platforms = strapkit_lib.strapkit_platforms;
         tokens.forEach(function(option, index) {
