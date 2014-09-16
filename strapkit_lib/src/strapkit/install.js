@@ -38,7 +38,7 @@ module.exports = function install(options) {
         return Q.all(options.platforms.map(function(platform) {
             var cmd = path.join(projectRoot, 'platforms', platform, 'strapkit', 'deploy');
             var args = options.options;
-
+            console.log(cmd,args);
             return superspawn.spawn(cmd, args, {stdio: 'inherit', printCommand: true});
         }));
     }).then(function() {
