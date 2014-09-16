@@ -27,5 +27,5 @@
 PROJECT_NAME=$( basename $( pwd -P ) )
 pebbleproj="./platforms/pebble/$PROJECT_NAME"
 cd $pebbleproj
-echo $0
+echo $1
 # pebble install --phone $0
