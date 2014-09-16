@@ -35,4 +35,4 @@ cp -p $indexjs $appjs
 # run pebble build cmd
 pebbleproj="./platforms/pebble/$PROJECT_NAME"
 cd $pebbleproj
-pebble build > /dev/null
+pebble build
