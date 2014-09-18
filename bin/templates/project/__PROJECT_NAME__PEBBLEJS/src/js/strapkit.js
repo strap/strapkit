@@ -13,4 +13,6 @@ module.exports = {
 	'sensors' : {
 		'accel' : function(){ return Accel; }
 	},
+	'settings' : function(){ return require('settings'); },
+	'ajax' : function(){ return require('ajax'); }
 }; 
