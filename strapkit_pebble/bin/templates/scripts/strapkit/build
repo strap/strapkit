@@ -37,8 +37,10 @@ PROJECT_NAME=$( basename $( pwd -P ) )
 indexDir="./js/*"
 appDir="./platforms/pebble/$PROJECT_NAME/src/js/"
 cp -rp $indexDir $appDir
-cd $appDir
-mv index.js app.js
+
+indexjs="./platforms/pebble/$PROJECT_NAME/src/js/index.js"
+appjs="./platforms/pebble/$PROJECT_NAME/src/js/app.js"
+mv $indexjs $appjs
 
 # run pebble build cmd
 pebbleproj="./platforms/pebble/$PROJECT_NAME"
