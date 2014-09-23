@@ -27,10 +27,18 @@ STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 PROJECT_PATH="$(dirname "$STRAPKIT_PATH")"
 PROJECT_NAME=$( basename $( pwd -P ) )
 
+# function to cp all files from top-level js dir
+#	to the internal pebble app dir.
+# 	constraints:
+#		copied files must have access to strapkit module
+#		main file must be determined and renamed
+
 # copy index.js to pebble subdir as app.js
-indexjs="./js/index.js"
-appjs="./platforms/pebble/$PROJECT_NAME/src/js/app.js"
-cp -p $indexjs $appjs
+indexDir="./js/*"
+appDir="./platforms/pebble/$PROJECT_NAME/src/js/"
+cp -rp $indexDir $appDir
+cd $appDir
+mv index.js app.js
 
 # run pebble build cmd
 pebbleproj="./platforms/pebble/$PROJECT_NAME"
