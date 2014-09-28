@@ -20,27 +20,10 @@
 
 var strapkit_util      = require('./util'),
     path              = require('path'),
-    hooker            = require('./hooker'),
-    superspawn        = require('./superspawn'),
-    Q                 = require('q');
+    superspawn        = require('./superspawn');
 
 // Returns a promise.
-module.exports = function install(options) {
-    var projectRoot = strapkit_util.cdProjectRoot();
-    options = strapkit_util.preProcessOptions(options);
-
-    var hooks = new hooker(projectRoot);
-    return hooks.fire('before_install', options)
-    .then(function() {
-        // Run a prepare first!
-        return require('./strapkit').raw.prepare(options.platforms);
-    }).then(function() {
-        return Q.all(options.platforms.map(function(platform) {
-            var cmd = path.join(projectRoot, 'platforms', platform, 'strapkit', 'deploy');
-            var args = options.options;
-            return superspawn.spawn(cmd, args, {stdio: 'inherit', printCommand: true});
-        }));
-    }).then(function() {
-        return hooks.fire('after_install', options);
-    });
+module.exports = function refresh(options) {
+    return superspawn.spawn('rm',['-rf',process.env.HOME+'/.strapkit'],{stdio: 'inherit', printCommand: true});
 };
+

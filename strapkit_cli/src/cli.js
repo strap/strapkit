@@ -127,7 +127,9 @@ module.exports = function CLI(inputArgs) {
         strapkit.raw[cmd].call(this, opts).done();
     } else if (cmd == 'serve') {
         strapkit.raw[cmd].apply(this, tokens).done();
-    } else if (cmd == 'create') {
+    } else if (cmd == 'refresh') {
+        strapkit.raw[cmd].call(this, opts).done();
+    }  else if (cmd == 'create') {
         var cfg = {};
         // If we got a forth parameter, consider it to be JSON to init the config.
         if (args._[4]) {

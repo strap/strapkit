@@ -57,6 +57,7 @@ addModuleProperty(module, 'config', './config');
 addModuleProperty(module, 'create', './create', true);
 addModuleProperty(module, 'emulate', './emulate', true);
 addModuleProperty(module, 'install', './install', true);
+addModuleProperty(module, 'refresh', './refresh', true);
 // addModuleProperty(module, 'plugin', './plugin', true);
 // addModuleProperty(module, 'plugins', './plugin', true);
 // addModuleProperty(module, 'serve', './serve');
