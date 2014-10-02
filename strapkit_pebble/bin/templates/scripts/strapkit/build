@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
@@ -17,32 +16,85 @@
 #  KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-#
 
-#
-# compile a Strapkit/Pebble project
-#
+function isGitRepo (){
+	local dir=$1
+
+	cd $dir
+	local rv="false"
+	if [ -d .git ];then
+		rv="true"
+	fi
+	cd -
+	echo rv
+}
+
+function GitInit (){
+	local topJsDir=$1
+
+	local gitignore="./platforms/pebble/strapkit/aux/.gitignore"
+	
+	local topJsRepoStatus=$(isGitRepo $topJsDir)
+	if [  "$topJsRepoStatus" != "true" ];then
+		cd $topJsDir
+		git init
+		cp $gitignore .
+		cd -
+	fi
+
+	local internalJSDir=$2
+	
+	local internalJSRepoStatus=$(isGitRepo $internalJSDir)
+	if [ "$internalJSRepoStatus" != "true" ];then
+		cd $internalJSDir
+		git init
+		git remote add origin $topJsDir
+		cd -
+	fi
+}
+
+function AddCommit (){
+	local jsDir=$1
+	cd $jsDir
+	git add .
+	git commit -m "saving top level js dir changes"
+	cd -
+}			
+
+function PullChangesTo (){
+	local pebbleSrcJs=$1
+	cd $pebbleSrcJs
+	git fetch origin master:new
+	git merge --commit -m "pull changes from top level js dir" new
+	git branch -d new
+	cd -
+}
+
+function SyncDirContents (){
+	local indexDir=$1
+	local appDir=$2
+	addCommit $indexDir
+	PullChangesTo $appDir
+}
+
+function PebbleBuild (){
+	local pebbleproj=$1
+	cd $pebbleproj
+	pebble build
+}
 
 STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 PROJECT_PATH="$(dirname "$STRAPKIT_PATH")"
 PROJECT_NAME=$( basename $( pwd -P ) )
 
-# function to cp all files from top-level js dir
-#	to the internal pebble app dir.
-# 	constraints:
-#		copied files must have access to strapkit module
-#		main file must be determined and renamed
-
-# copy index.js to pebble subdir as app.js
 indexDir="./js/*"
 appDir="./platforms/pebble/$PROJECT_NAME/src/js/"
-cp -rp $indexDir $appDir
+pblProj="./platforms/pebble/$PROJECT_NAME"
 
-indexjs="./platforms/pebble/$PROJECT_NAME/src/js/index.js"
-appjs="./platforms/pebble/$PROJECT_NAME/src/js/app.js"
-mv $indexjs $appjs
+SyncDirContents $indexDir $appDir
+PebbleBuild $pblProj
 
-# run pebble build cmd
-pebbleproj="./platforms/pebble/$PROJECT_NAME"
-cd $pebbleproj
-pebble build
+# rename index to app
+# indexjs="./platforms/pebble/$PROJECT_NAME/src/js/index.js"
+# appjs="./platforms/pebble/$PROJECT_NAME/src/js/app.js"
+# mv $indexjs $appjs
