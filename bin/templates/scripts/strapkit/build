@@ -59,7 +59,7 @@ function GitInit (){
 function AddCommit (){
 	local jsDir=$1
 	cd $jsDir
-	git add .
+	git add --all .
 	git commit -m "saving top level js dir changes"
 	cd -
 }			
@@ -76,7 +76,7 @@ function PullChangesTo (){
 function SyncDirContents (){
 	local indexDir=$1
 	local appDir=$2
-	
+
 	GitInit $indexDir $appDir
 	AddCommit $indexDir
 	PullChangesTo $appDir
