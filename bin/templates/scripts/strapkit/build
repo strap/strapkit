@@ -32,15 +32,16 @@ function isGitRepo (){
 function GitInit (){
 	local topJsDir=$1
 
-	local STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 	local gitignore="$STRAPKIT_PATH/aux/.gitignore"
+	
+	local STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 
 	local topJsRepoStatus=$(isGitRepo $topJsDir)
 	if [  "$topJsRepoStatus" != "true" ];then
 		cd $topJsDir
 		git init
 		echo "gitignore: $gitignore"
-		cp $gitignore .
+		cp $gitignore $indexDir
 		cd -
 	fi
 
@@ -75,6 +76,8 @@ function PullChangesTo (){
 function SyncDirContents (){
 	local indexDir=$1
 	local appDir=$2
+	
+	GitInit $indexDir $appDir
 	AddCommit $indexDir
 	PullChangesTo $appDir
 }
