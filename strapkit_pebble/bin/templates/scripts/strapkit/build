@@ -74,7 +74,7 @@ function PullChangesTo (){
 function SyncDirContents (){
 	local indexDir=$1
 	local appDir=$2
-	addCommit $indexDir
+	AddCommit $indexDir
 	PullChangesTo $appDir
 }
 
