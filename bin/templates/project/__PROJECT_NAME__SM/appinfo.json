@@ -1,17 +1,35 @@
 {
-  "uuid": "__UUID__",
-  "shortName": "__PROJECT_NAME__",
-  "longName": "__PROJECT_NAME__",
-  "companyName": "MakeAwesomeHappen",
+  "uuid": "53a45835-fead-4fcb-a7f2-d8d023146ef7",
+  "shortName": "StrapKitjs",
+  "longName": "StrapKit for Pebble.js",
+  "companyName": "Strap",
   "versionCode": 1,
-  "versionLabel": "1.0.0",
+  "versionLabel": "1.0",
+  "capabilities": [ ],
   "watchapp": {
     "watchface": false
   },
-  "appKeys": {
-    "dummy": 0
-  },
+  "appKeys": {},
   "resources": {
-    "media": []
+    "media": [
+      {
+        "menuIcon": true,
+        "type": "png",
+        "name": "IMAGE_MENU_ICON",
+        "file": "images/menu_icon.png"
+      }, {
+        "type": "png",
+        "name": "IMAGE_LOGO_SPLASH",
+        "file": "images/logo_splash.png"
+      }, {
+        "type": "png",
+        "name": "IMAGE_TILE_SPLASH",
+        "file": "images/tile_splash.png"
+      }, {
+        "type": "font",
+        "name": "MONO_FONT_14",
+        "file": "fonts/UbuntuMono-Regular.ttf"
+      }
+    ]
   }
 }
