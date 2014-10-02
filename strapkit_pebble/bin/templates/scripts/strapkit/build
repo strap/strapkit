@@ -94,9 +94,13 @@ echo "PROJECT_PATH $PROJECT_PATH"
 echo "PROJECT_ROOT $PROJECT_ROOT"
 echo "PROJECT_NAME $PROJECT_NAME"
 
-indexDir="./js/*"
-appDir="./platforms/pebble/$PROJECT_NAME/src/js/"
-pblProj="./platforms/pebble/$PROJECT_NAME"
+indexDir="$PROJECT_ROOT/js/"
+pblProj="$PROJECT_PATH/$PROJECT_NAME"
+appDir="$pblProj/src/js/"
+
+echo "indexDir $indexDir"
+echo "pblProj $pblProj"
+echo "appDir $appDir"
 
 # SyncDirContents $indexDir $appDir
 # PebbleBuild $pblProj
