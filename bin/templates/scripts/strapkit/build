@@ -85,22 +85,21 @@ function PebbleBuild (){
 	pebble build
 }
 
+# PROJECT_PATH /home/marcelle/Code/strap/experiment/new/platforms/pebble
+# PROJECT_ROOT /home/marcelle/Code/strap/experiment/new
+# PROJECT_NAME new
+# indexDir /home/marcelle/Code/strap/experiment/new/js/
+# pblProj /home/marcelle/Code/strap/experiment/new/platforms/pebble/new
+# appDir /home/marcelle/Code/strap/experiment/new/platforms/pebble/new/src/js/
+
 STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 PROJECT_PATH="$(dirname "$STRAPKIT_PATH")"
 PROJECT_NAME=$( basename $( pwd -P ) )
 PROJECT_ROOT="$(dirname $(dirname "$PROJECT_PATH"))"
 
-echo "PROJECT_PATH $PROJECT_PATH"
-echo "PROJECT_ROOT $PROJECT_ROOT"
-echo "PROJECT_NAME $PROJECT_NAME"
-
 indexDir="$PROJECT_ROOT/js/"
 pblProj="$PROJECT_PATH/$PROJECT_NAME"
 appDir="$pblProj/src/js/"
-
-echo "indexDir $indexDir"
-echo "pblProj $pblProj"
-echo "appDir $appDir"
 
 # SyncDirContents $indexDir $appDir
 # PebbleBuild $pblProj
