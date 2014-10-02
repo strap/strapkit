@@ -33,11 +33,12 @@ function GitInit (){
 	local topJsDir=$1
 
 	local gitignore="./platforms/pebble/strapkit/aux/.gitignore"
-	
+
 	local topJsRepoStatus=$(isGitRepo $topJsDir)
 	if [  "$topJsRepoStatus" != "true" ];then
 		cd $topJsDir
 		git init
+		echo "gitignore: $gitignore"
 		cp $gitignore .
 		cd -
 	fi
