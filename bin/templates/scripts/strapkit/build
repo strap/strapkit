@@ -93,7 +93,7 @@ echo "PROJECT_PATH $PROJECT_PATH"
 echo "PROJECT_ROOT $PROJECT_ROOT"
 echo "PROJECT_NAME $PROJECT_NAME"
 
-PROJECT_ROOT="$(dirname $(dirname $(dirname "$STRAPKIT_PATH")))"
+PROJECT_ROOT="$(dirname $(dirname "$PROJECT_PATH"))"
 indexDir="./js/*"
 appDir="./platforms/pebble/$PROJECT_NAME/src/js/"
 pblProj="./platforms/pebble/$PROJECT_NAME"
