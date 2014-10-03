@@ -364,6 +364,7 @@ function call_into_create(target, projectRoot, cfg, libDir, template_dir, opts) 
             if (template_dir) {
                 args.push(template_dir);
             }
+            console.log("platform add > call into create",bin, args, opts);
             return superspawn.spawn(bin, args, opts || { stdio: 'inherit' })
             .then(function() {
                 // return require('./strapkit').raw.prepare(target);
