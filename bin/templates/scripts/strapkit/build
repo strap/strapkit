@@ -109,5 +109,5 @@ SyncDirContents $indexDir $appDir
 # indexjs="./platforms/pebble/$PROJECT_NAME/src/js/index.js"
 # appjs="./platforms/pebble/$PROJECT_NAME/src/js/app.js"
 # mv $indexjs $appjs
-echo $1
+echo "opts $1"
 PebbleBuild $pblProj
