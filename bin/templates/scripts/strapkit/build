@@ -105,9 +105,9 @@ pblProj="$PROJECT_PATH/$PROJECT_NAME"
 appDir="$pblProj/src/js/"
 
 SyncDirContents $indexDir $appDir
-PebbleBuild $pblProj
-
 # rename index to app
 # indexjs="./platforms/pebble/$PROJECT_NAME/src/js/index.js"
 # appjs="./platforms/pebble/$PROJECT_NAME/src/js/app.js"
 # mv $indexjs $appjs
+echo $1
+PebbleBuild $pblProj
