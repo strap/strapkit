@@ -84,6 +84,8 @@ function SyncDirContents (){
 
 function RenameToAppJs (){
 	local appdir=$2
+	cd $appdir
+	
 	local pebblejsAppName="app.js"
 
 	local mainfile="index.js"
@@ -91,7 +93,6 @@ function RenameToAppJs (){
 		mainfile=$(basename $1)
 	fi
 
-	cd $appdir
 	mv $mainfile $pebblejsAppName
 	cd -
 }
