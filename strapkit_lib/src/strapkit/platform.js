@@ -44,6 +44,7 @@ function getVersionFromScript(script, defaultValue) {
 }
 
 function add(hooks, projectRoot, targets, opts) {
+    console.log(opts);
     var xml = strapkit_util.projectConfig(projectRoot);
     var cfg = new ConfigParser(xml);
     if (!targets || !targets.length) {

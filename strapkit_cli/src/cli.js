@@ -25,14 +25,14 @@ module.exports = function CLI(inputArgs) {
         optimist = require('optimist');
         _ = require('underscore');
     } catch (e) {
-        console.error("Please run npm install from this directory:\n\t" +
-                      path.dirname(__dirname));
+        console.error("Please run npm install from this directory:\n\t" + path.dirname(__dirname));
         process.exit(2);
     }
     var strapkit_lib = require('strapkit-lib'),
         StrapkitError = strapkit_lib.StrapkitError,
         strapkit = strapkit_lib.strapkit;
 
+    // console.log("iargs",inputArgs);//fixme
     // If no inputArgs given, use process.argv.
     var tokens;
     if (inputArgs) {
@@ -40,7 +40,7 @@ module.exports = function CLI(inputArgs) {
     } else {
         tokens = process.argv.slice(2);
     }
-
+    // console.log("tokens",tokens);//fixme
     // When changing command line arguments, update doc/help.txt accordingly.
     var args = optimist(tokens)
         .boolean('d')
@@ -130,6 +130,7 @@ module.exports = function CLI(inputArgs) {
     } else if (cmd == 'refresh') {
         strapkit.raw[cmd].call(this, opts).done();
     }  else if (cmd == 'create') {
+        // console.log(args);//fixme
         var cfg = {};
         // If we got a forth parameter, consider it to be JSON to init the config.
         if (args._[4]) {
