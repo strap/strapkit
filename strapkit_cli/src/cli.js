@@ -124,13 +124,14 @@ module.exports = function CLI(inputArgs) {
                 opts.options.push(option);
             }
         });
+        console.log("build opts",opts);//fixme
         strapkit.raw[cmd].call(this, opts).done();
     } else if (cmd == 'serve') {
         strapkit.raw[cmd].apply(this, tokens).done();
     } else if (cmd == 'refresh') {
         strapkit.raw[cmd].call(this, opts).done();
     }  else if (cmd == 'create') {
-        // console.log(args);//fixme
+        console.log(args);//fixme
         var cfg = {};
         // If we got a forth parameter, consider it to be JSON to init the config.
         if (args._[4]) {
