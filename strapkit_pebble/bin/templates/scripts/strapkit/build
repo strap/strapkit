@@ -82,6 +82,20 @@ function SyncDirContents (){
 	PullChangesTo $appDir
 }
 
+function RenameToAppJs (){
+	local appdir=$2
+	local pebblejsAppName="app.js"
+
+	local mainfile="index.js"
+	if[ -e $(basename $1)];then
+		mainfile=$(basename $1)
+	fi
+
+	cd $appdir
+	mv $mainfile $pebblejsAppName
+	cd -
+}
+
 function PebbleBuild (){
 	local pebbleproj=$1
 	cd $pebbleproj
@@ -103,11 +117,8 @@ PROJECT_ROOT="$(dirname $(dirname "$PROJECT_PATH"))"
 indexDir="$PROJECT_ROOT/js/"
 pblProj="$PROJECT_PATH/$PROJECT_NAME"
 appDir="$pblProj/src/js/"
+mainfile=$1
 
 SyncDirContents $indexDir $appDir
-# rename index to app
-# indexjs="./platforms/pebble/$PROJECT_NAME/src/js/index.js"
-# appjs="./platforms/pebble/$PROJECT_NAME/src/js/app.js"
-# mv $indexjs $appjs
-echo "opts $1"
+RenameToAppJs $mainfile $appDir
 PebbleBuild $pblProj
