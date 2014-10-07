@@ -30,8 +30,8 @@ set -e
 
 function usage (){
   echo "Usage:"
-  echo "    $0 --no-metrics <path_to_new_project> <package_name> <project_name> [<project_template_dir>]"
-  echo "    $0 --no-metrics (optional): Do not include StrapMetrics"
+  echo "    $0 --nometrics <path_to_new_project> <package_name> <project_name> [<project_template_dir>]"
+  echo "    $0 --nometrics (optional): Do not include StrapMetrics"
   echo "    $0 <path_to_new_project>: Path to your new StrapKit Pebble project"
   echo "    $0 <package_name>: Package name, following reverse-domain style convention"
   echo "    $0 <project_name>: Project name"
@@ -42,7 +42,7 @@ function usage (){
 INCLUDE_METRICS=1
 while [ $# -gt 0 ]; do
     case "$1" in
-    --no-metrics) INCLUDE_METRICS=0 ;;
+    --nometrics) INCLUDE_METRICS=0 ;;
     -*) echo "Unrecognized argument: $1" >&2; usage ;;
     *)
         if [[ -z "$PROJECT_PATH" ]]; then
