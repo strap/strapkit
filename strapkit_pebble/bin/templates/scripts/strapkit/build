@@ -26,7 +26,7 @@ function isGitRepo (){
 		rv="true"
 	fi
 	cd -
-	echo rv
+	echo $rv
 }
 
 function GitInit (){
