@@ -9,8 +9,7 @@ SM.init({
 });
 
 var main = UI.view({
-  title: 'Pebble.js',
-  icon: 'images/menu_icon.png',
+  title: 'Strapkit',
   subtitle: 'Hello World!',
   body: 'Press any button.'
 });
@@ -22,8 +21,7 @@ main.on('click', 'up', function(e) {
   var menu =  UI.menu({
     sections: [{
       items: [{
-        title: 'Pebble.js',
-        icon: 'images/menu_icon.png',
+        title: 'Strapkit',
         subtitle: 'Can do Menus'
       }, {
         title: 'Second Item',
@@ -57,7 +55,7 @@ main.on('click', 'down', function(e) {
   var card = UI.view();
   card.title('A Card');
   card.subtitle('Is a Window');
-  card.body('The simplest window type in Pebble.js.');
+  card.body('The simplest window type in Strapkit.');
   card.show();
   SM.log('/main/down');
 });
