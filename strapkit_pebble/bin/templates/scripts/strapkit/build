@@ -89,7 +89,7 @@ function RenameToAppJs (){
 
 	cd $appdir
 	mv $mainfile $pebblejsAppName 2> /dev/null
-	local status=$?
+	local status=$(echo $?)
 	if [ "$status" -eq "1" ]; then
 		echo "$mainfile does not exist"
 	fi
@@ -120,7 +120,7 @@ appDir="$pblProj/src/js/"
 
 SyncDirContents $indexDir $appDir
 
-mainfile="index.js"
+mainfile="app.js"
 if [ ! -z ${1+x} ];then
 	mainfile=$(basename $1)
 fi
