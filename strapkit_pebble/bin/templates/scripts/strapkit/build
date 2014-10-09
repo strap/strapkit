@@ -39,7 +39,7 @@ function GitInit (){
 	local topJsRepoStatus=$(isGitRepo $topJsDir)
 	if [  "$topJsRepoStatus" != "true" ];then
 		cd $topJsDir
-		git init
+		git init > /dev/null
 		echo "gitignore: $gitignore"
 		cp $gitignore $indexDir
 		cd -
@@ -50,8 +50,8 @@ function GitInit (){
 	local internalJSRepoStatus=$(isGitRepo $internalJSDir)
 	if [ "$internalJSRepoStatus" != "true" ];then
 		cd $internalJSDir
-		git init
-		git remote add origin $topJsDir
+		git init > /dev/null
+		git remote add origin $topJsDir > /dev/null
 		cd -
 	fi
 }
@@ -59,17 +59,17 @@ function GitInit (){
 function AddCommit (){
 	local jsDir=$1
 	cd $jsDir
-	git add --all .
-	git commit -m "saving top level js dir changes"
+	git add --all . > /dev/null
+	git commit -m "saving top level js dir changes" > /dev/null
 	cd -
 }			
 
 function PullChangesTo (){
 	local pebbleSrcJs=$1
 	cd $pebbleSrcJs
-	git fetch origin master:new
-	git merge --commit -m "pull changes from top level js dir" new
-	git branch -d new
+	git fetch origin master:new > /dev/null
+	git merge --commit -m "pull changes from top level js dir" new > /dev/null
+	git branch -d new > /dev/null
 	cd -
 }
 
@@ -83,18 +83,17 @@ function SyncDirContents (){
 }
 
 function RenameToAppJs (){
+	local mainfile=$1
 	local appdir=$2
-	cd $appdir
-
 	local pebblejsAppName="app.js"
 
-	local mainfile="index.js"
-	if [ -e $(basename $1) ];then
-		mainfile=$(basename $1)
+	cd $appdir
+	mv $mainfile $pebblejsAppName 2> /dev/null
+	local status=$?
+	if [ "$status" -eq "1" ]; then
+		echo "$mainfile does not exist"
 	fi
-
-	mv $mainfile $pebblejsAppName
-	cd -
+	cd - > /dev/null
 }
 
 function PebbleBuild (){
@@ -118,8 +117,13 @@ PROJECT_ROOT="$(dirname $(dirname "$PROJECT_PATH"))"
 indexDir="$PROJECT_ROOT/js/"
 pblProj="$PROJECT_PATH/$PROJECT_NAME"
 appDir="$pblProj/src/js/"
-mainfile=$1
 
 SyncDirContents $indexDir $appDir
+
+mainfile="index.js"
+if [ ! -z ${1+x} ];then
+	mainfile=$(basename $1)
+fi
 RenameToAppJs $mainfile $appDir
+
 PebbleBuild $pblProj
