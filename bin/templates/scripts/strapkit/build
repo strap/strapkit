@@ -130,6 +130,7 @@ appDir="$pblProj/src/js/"
 
 # PebbleBuild $pblProj
 
+echo "0 $0"
 echo "STRAPKIT_PATH $STRAPKIT_PATH"
 echo "PROJECT_PATH $PROJECT_PATH"
 echo "PROJECT_NAME $PROJECT_NAME"
