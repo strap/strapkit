@@ -1,33 +1,22 @@
+var Vector2 = require('vector2');
 var UI = require('ui');
 var Accel = require('ui/accel');
 Accel.init();
 
-// module.exports = {
-// 	'ui' : {
-// 		'view' : function(config){ return new UI.Card(config); },
-// 		'menu' : function(config){ return new UI.Menu(config); },
-// 		'window' : function(config){ return new UI.Window(config); },
-// 		'text' : function(config){ return new UI.Text(config); },
-// 		'vibe' : function(config){ return require('ui/vibe'); }
-// 	},
-// 	'sensors' : {
-// 		'accel' : function(){ return Accel; }
-// 	},
-// 	'settings' : function(){ return require('settings'); },
-// 	'ajax' : function(){ return require('ajax'); }
-// }; 
+var APP = {};
 
-UI.view = function(config){ return new UI.Card(config); };
-UI.menu = function(config){ return new UI.Menu(config); };
-UI.window = function(config){ return new UI.Window(config); };
-UI.text = function(config){ return new UI.Text(config); };
-UI.vibe = function(config){ return require('ui/vibe'); };
+UI.View = function(config){ return new UI.Card(config); };
+UI.Menu = function(config){ return new UI.Menu(config); };
+UI.Window = function(config){ return new UI.Window(config); };
+UI.Text = function(config){ return new UI.Text(config); };
+UI.Vibe = function(config){ return require('ui/vibe'); };
 
 module.exports = {
-	'ui' : UI,
-	'sensors' : {
-		'accel' : function(){ return Accel; }
+    'Coord': function(X,Y){ return Vector2(X,Y); },
+	'UI' : UI,
+	'Sensors' : {
+		'Accel' : function(){ return Accel; }
 	},
-	'settings' : function(){ return require('settings'); },
-	'ajax' : function(){ return require('ajax'); }
-}
+	'Settings' : function(){ return require('settings'); },
+	'Ajax' : function(){ return require('ajax'); }
+};
