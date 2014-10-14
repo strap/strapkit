@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "elementtree": "^0.1.6",
+    "underscore": "^1.7.0"
+  }
+}
