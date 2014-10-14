@@ -85,13 +85,15 @@ function SyncDirContents (){
 function RenameToAppJs (){
 	local mainfile=$1
 	local appdir=$2
-	local pebblejsAppName="app.js"
 
 	cd $appdir
-	mv $mainfile $pebblejsAppName 2> /dev/null
-	local status=$(echo $?)
-	if [ "$status" -eq "1" ]; then
-		echo "$mainfile does not exist"
+	local pebblejsAppName="app.js"
+	if [ "$mainfile" != "$pebblejsAppName" ]; then # if (rename required)
+		mv $mainfile $pebblejsAppName 2> /dev/null
+		local status=$(echo $?)
+		if [ "$status" -eq "1" ]; then
+			echo "$mainfile does not exist"
+		fi
 	fi
 	cd - > /dev/null
 }
@@ -121,7 +123,7 @@ appDir="$pblProj/src/js/"
 SyncDirContents $indexDir $appDir
 
 mainfile="app.js"
-if [ ! -z ${1+x} ];then
+if [ ! -z ${1+x} ];then # if($1)
 	mainfile=$(basename $1)
 fi
 RenameToAppJs $mainfile $appDir
