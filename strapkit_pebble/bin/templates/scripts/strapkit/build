@@ -120,12 +120,20 @@ indexDir="$PROJECT_ROOT/js/"
 pblProj="$PROJECT_PATH/$PROJECT_NAME"
 appDir="$pblProj/src/js/"
 
-SyncDirContents $indexDir $appDir
+# SyncDirContents $indexDir $appDir
 
-mainfile="app.js"
-if [ ! -z ${1+x} ];then # if($1)
-	mainfile=$(basename $1)
-fi
-RenameToAppJs $mainfile $appDir
+# mainfile="app.js"
+# if [ ! -z ${1+x} ];then # if($1)
+# 	mainfile=$(basename $1)
+# fi
+# RenameToAppJs $mainfile $appDir
 
-PebbleBuild $pblProj
+# PebbleBuild $pblProj
+
+echo "STRAPKIT_PATH $STRAPKIT_PATH"
+echo "PROJECT_PATH $PROJECT_PATH"
+echo "PROJECT_NAME $PROJECT_NAME"
+echo "PROJECT_ROOT $PROJECT_ROOT"
+echo "indexDir $indexDir"
+echo "pblProj $pblProj"
+echo "appDir $appDir"
