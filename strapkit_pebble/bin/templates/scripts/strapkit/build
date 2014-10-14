@@ -114,7 +114,7 @@ function PebbleBuild (){
 STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 PROJECT_PATH="$(dirname "$STRAPKIT_PATH")"
 # PROJECT_NAME=$( basename $( pwd -P ) )
-PROJECT_NAME=$( $STRAPKIT_PATH/aux/ReadProjectName.js $PROJECT_ROOT/config.xml )
+PROJECT_NAME=$( node $STRAPKIT_PATH/aux/ReadProjectName.js $PROJECT_ROOT/config.xml )
 PROJECT_ROOT="$(dirname $(dirname "$PROJECT_PATH"))"
 
 indexDir="$PROJECT_ROOT/js/"
