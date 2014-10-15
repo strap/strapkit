@@ -1,11 +1,11 @@
 #!/bin/bash
 
-CURRENT_DIR=$(dirname)
+CURRENT_DIR=$(cd "$( dirname "$0" )" && pwd -P)
 
 FILE_NAME="$1"
 echo $CURRENT_DIR
-SAMPLE_DIR="./templates/SampleProject"
-OUTPUT_DIR="./"
+SAMPLE_DIR=$CURRENT_DIR"/templates/SampleProject"
+OUTPUT_DIR=""
 APP_FILE=""
 
 cp $APP_FILE $SAMPLE_DIR/mobile/src/main/assets/app.js
