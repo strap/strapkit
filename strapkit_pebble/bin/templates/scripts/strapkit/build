@@ -112,7 +112,8 @@ PROJECT_NAME=$( basename $( pwd -P ) )
 pblProj="$PROJECT_PATH/$PROJECT_NAME"
 
 appInfo="$pblProj/appinfo.json"
-./aux/UpdateAppName $appInfo $PROJECT_NAME
+UpdateAppName="$STRAPKIT_PATH/aux/UpdateAppName"
+$UpdateAppName $appInfo $PROJECT_NAME
 
 indexDir="$PROJECT_ROOT/js/"
 appDir="$pblProj/src/js/"
