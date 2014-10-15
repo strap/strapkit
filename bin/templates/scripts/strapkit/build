@@ -109,11 +109,13 @@ PROJECT_PATH="$(dirname "$STRAPKIT_PATH")"
 PROJECT_ROOT="$(dirname $(dirname "$PROJECT_PATH"))"
 PROJECT_NAME=$( basename $( pwd -P ) )
 # PROJECT_NAME=$( node $STRAPKIT_PATH/aux/ReadProjectName.js $PROJECT_ROOT/config.xml )
+pblProj="$PROJECT_PATH/$PROJECT_NAME"
+
+appInfo="$pblProj/appinfo.json"
+./aux/UpdateAppName $appInfo $PROJECT_NAME
 
 indexDir="$PROJECT_ROOT/js/"
-pblProj="$PROJECT_PATH/$PROJECT_NAME"
 appDir="$pblProj/src/js/"
-
 SyncDirContents $indexDir $appDir
 
 mainfile="app.js"
