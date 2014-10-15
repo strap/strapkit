@@ -148,15 +148,17 @@ function strap_api_log(params){
 
 var APP = {};
 
-UI.View = function(config){ return new UI.Card(config); };
-UI.Menu = function(config){ return new UI.Menu(config); };
-UI.Window = function(config){ return new UI.Window(config); };
-UI.Text = function(config){ return new UI.Text(config); };
-UI.Vibe = function(config){ return require('ui/vibe'); };
+var userInterface = {
+    Vibe : function(config){ return require('ui/vibe'); },
+    View : function(config){ return new UI.Card(config); },
+    Menu : function(config){ return new UI.Menu(config); },
+    Window : function(config){ return new UI.Window(config); },
+    Text : function(config){ return new UI.Text(config); }
+}
 
 module.exports = {
     'Coord': function(X,Y){ return new Vector2(X,Y); },
-    'UI' : UI,
+    'UI' : userInterface,
     'Sensors' : {
         'Accel' : function(){ return Accel; }
     },
