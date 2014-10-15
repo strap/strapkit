@@ -12,6 +12,11 @@
   "appKeys": {},
   "resources": {
     "media": [
+       {
+        "type": "png",
+        "name": "IMAGE_TILE_SPLASH",
+        "file": "images/tile_splash.png"
+      },
       {
         "type": "font",
         "name": "MONO_FONT_14",
