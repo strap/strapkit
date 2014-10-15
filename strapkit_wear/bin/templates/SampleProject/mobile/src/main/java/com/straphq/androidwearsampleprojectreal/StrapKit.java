@@ -48,6 +48,7 @@ public class StrapKit implements DataApi.DataListener {
     @JavascriptInterface
     public void strapMetricsInit(String appID) {
         metrics.initFromPhone(appID);
+
         metricsEnabled = true;
     }
 
@@ -140,7 +141,10 @@ public class StrapKit implements DataApi.DataListener {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                mWebView.loadUrl("javascript:strapkit.init()");
+
+                String html = "<html><script src=\"http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js\"></script><script src=\"file:///android_asset/strapkit.js\"></script><script src=\"file:///android_asset/app.js\"></script><body></body></html>";
+                mWebView.loadDataWithBaseURL("file:////android_asset/", html, "text/html", "utf-8", "");
+                //mWebView.loadUrl("javascript:strapkit.init()");
             }
         });
     }
@@ -171,6 +175,7 @@ public class StrapKit implements DataApi.DataListener {
             if(metricsEnabled && metrics.canHandleMsg(evt)) {
                 try {
                     metrics.processReceiveData(DataMapItem.fromDataItem(evt.getDataItem()).getDataMap());
+
                 } catch (Exception e) {
 
                 }
@@ -194,8 +199,6 @@ public class StrapKit implements DataApi.DataListener {
                 final int position = map.getInt("position");
                 onSelect(viewID, position);
             }
-
-
         }
         buffer.release();
     }

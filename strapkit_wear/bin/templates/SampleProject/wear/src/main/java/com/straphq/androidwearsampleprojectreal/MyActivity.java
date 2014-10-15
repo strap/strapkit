@@ -86,6 +86,8 @@ public class MyActivity extends Activity implements View.OnTouchListener, Strapk
         bridge = new StrapkitBridge(mGoogleApiClient, listener, getApplicationContext());
 
         strap = new Strap(mGoogleApiClient, getApplicationContext(), "");
+
+        //TODO allow users to specify this in the Strapkit code
         strap.setShouldLogAccel(false);
 
     }

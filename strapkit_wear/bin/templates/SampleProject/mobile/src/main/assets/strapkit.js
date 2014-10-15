@@ -51,7 +51,7 @@ window.strapkit = {
 
   platform: {
 
-  }
+  },
 
   //wear specific code
   wear: {
