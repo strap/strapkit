@@ -1,14 +1,16 @@
 #!/bin/bash
 
-CURRENT_DIR=$(dirname $0)
+CURRENT_DIR=$(cd "$( dirname "$0" )" && pwd -P)
 
 FILE_NAME="$1"
 echo $CURRENT_DIR
-SAMPLE_DIR="./templates/SampleProject"
-OUTPUT_DIR="./"
-APP_FILE=""
-
-cp $APP_FILE $SAMPLE_DIR/mobile/src/main/assets/app.js
+SAMPLE_DIR=$CURRENT_DIR"/templates/SampleProject"
+OUTPUT_DIR="$CURRENT_DIR/../../../../output"
+APP_FILE="$0"
+if [ "$0" -eq "" ]
+    APP_FILE="app.js"
+fi
+cp $CURRENT_DIR/../../../../js/$APP_FILE $SAMPLE_DIR/mobile/src/main/assets/app.js
 cd $SAMPLE_DIR
 ./gradlew aR
 cp ./mobile/build/outputs/apk/ $OUTPUT_DIR
