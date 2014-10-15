@@ -3,54 +3,17 @@ var UI = require('ui');
 var Accel = require('ui/accel');
 Accel.init();
 
-var APP = {};
-
-UI.View = function(config){ return new UI.Card(config); };
-UI.Menu = function(config){ return new UI.Menu(config); };
-UI.Window = function(config){ return new UI.Window(config); };
-UI.Text = function(config){ return new UI.Text(config); };
-UI.Vibe = function(config){ return require('ui/vibe'); };
-
-module.exports = {
-    'Coord': function(X,Y){ return Vector2(X,Y); },
-	'UI' : UI,
-	'Sensors' : {
-		'Accel' : function(){ return Accel; }
-	},
-	'Settings' : function(){ return require('settings'); },
-	'Ajax' : function(){ return require('ajax'); },
-	'Metrics' : { 
-		'Init' : function(params){
-			APP = strap_api_clone(params);
-			if( APP ) {
-				if( Accel ) strap_api_init_accel(Accel, APP);
-				strap_api_init(APP);
-			}
-		},
-		'Log' : function(e){
-			var params = strap_api_clone(APP);
-			params['action_url'] = e;
-			strap_api_log(params);
-		}
-	}
-};
-
-
-// ------------------------------
-// Start of Strap API
-// ------------------------------
-
 var strap_api_url = "https://api.straphq.com/create/visit/with/";
 
-
 var strap_api_clone = function(obj) {
-    if (null == obj || "object" != typeof obj) return obj;
     var copy = {};
-    for (var attr in obj) {
-        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    var attr;
+    if (!obj || "object" !== typeof obj) { return obj; }
+    for (attr in obj) {
+        if (obj.hasOwnProperty(attr)) { copy[attr] = obj[attr]; }
     }
     return copy;
-}
+};
 
 // probably want to clone your constant params before adding values
 // var params = strap_api_clone(strap_params);
@@ -179,10 +142,38 @@ function strap_api_log(params){
             //console.log("Error"); 
             }
         }
-    }
+    };
     req.send(query);
 }
 
-// ------------------------------
-// End of Strap API
-// ------------------------------
+var APP = {};
+
+UI.View = function(config){ return new UI.Card(config); };
+UI.Menu = function(config){ return new UI.Menu(config); };
+UI.Window = function(config){ return new UI.Window(config); };
+UI.Text = function(config){ return new UI.Text(config); };
+UI.Vibe = function(config){ return require('ui/vibe'); };
+
+module.exports = {
+    'Coord': function(X,Y){ return new Vector2(X,Y); },
+    'UI' : UI,
+    'Sensors' : {
+        'Accel' : function(){ return Accel; }
+    },
+    'Settings' : function(){ return require('settings'); },
+    'Ajax' : function(){ return require('ajax'); },
+    'Metrics' : { 
+        'Init' : function(params){
+            APP = strap_api_clone(params);
+            if( APP ) {
+                if( Accel ) { strap_api_init_accel(Accel, APP); }
+                strap_api_init(APP);
+            }
+        },
+        'Log' : function(e){
+            var params = strap_api_clone(APP);
+            params['action_url'] = e;
+            strap_api_log(params);
+        }
+    }
+};
