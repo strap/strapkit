@@ -116,8 +116,9 @@ cp -r "$SCRIPT_TEMPLATE_DIR"/* "$PROJECT_PATH/"
 projectTopDir=$(dirname PROJECT_PATH)
 platform=$(basename $PROJECT_PATH)
 
-platformResources="$projectTopDir/resources/$platform"
-mkdir $platformResources
+resources="$projectTopDir/resources"
+platformResources="$resources/$platform"
+mkdir $resources $platformResources
 
 images="$platformResources/images"
 fonts="$platformResources/fonts"
