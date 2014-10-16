@@ -28,7 +28,7 @@ module.exports = {
     },
     'android-wear' : {
         parser : './metadata/android_wear_parser',
-        url    : 'https://bitbucket.org/strap/strapkit_wear/get/master.tar.gz',
+        url    : 'https://github.com/strap/strapkit_wear/tarball/master/',
         version: '0.1.0'
     },
     'js' : {
