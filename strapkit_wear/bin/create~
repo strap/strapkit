@@ -1,7 +1,0 @@
-#!/bin/bash
-
-SAMPLE_DIR="./templates/SampleProject/"
-
-
-$SAMPLE_DIR/gradlew aR
-cp $SAMPLE_DIR/mobile/build/outputs/apk/ ./
