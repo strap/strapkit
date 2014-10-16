@@ -111,8 +111,22 @@ R=$PROJECT_PATH/$PROJECT_NAME
 # Finally copy the scripts
 cp -r "$SCRIPT_TEMPLATE_DIR"/* "$PROJECT_PATH/"
 
-echo "PROJECT_PATH $PROJECT_PATH"
-echo "PROJECT_PARENT $PROJECT_PARENT"
-echo "PROJECT_TEMPLATE_DIR $PROJECT_TEMPLATE_DIR"
-echo "SCRIPT_TEMPLATE_DIR $SCRIPT_TEMPLATE_DIR"
-echo "INCLUDE_METRICS $INCLUDE_METRICS"
+
+# create resources/[platformName] dir for images and fonts
+projectTopDir=$(dirname PROJECT_PATH)
+platform=$(basename $PROJECT_PATH)
+
+platformResources="$projectTopDir/resources/$platform"
+mkdir $platformResources
+
+images="$platformResources/images"
+fonts="$platformResources/fonts"
+mkdir $images $fonts
+resourcesJson="$platformResources/.resources.json"
+echo "{}" > $resourcesJson
+
+# echo "PROJECT_PATH $PROJECT_PATH"
+# echo "PROJECT_PARENT $PROJECT_PARENT"
+# echo "PROJECT_TEMPLATE_DIR $PROJECT_TEMPLATE_DIR"
+# echo "SCRIPT_TEMPLATE_DIR $SCRIPT_TEMPLATE_DIR"
+# echo "INCLUDE_METRICS $INCLUDE_METRICS"
