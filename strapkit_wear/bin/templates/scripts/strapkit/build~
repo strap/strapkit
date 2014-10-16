@@ -1,0 +1,18 @@
+-#!/bin/bash
+
+CURRENT_DIR=$(cd "$( dirname "$0" )" && pwd -P)
+
+FILE_NAME="$1"
+echo $CURRENT_DIR
+SAMPLE_DIR=$CURRENT_DIR"/templates/SampleProject"
+OUTPUT_DIR="$CURRENT_DIR/../../"
+APP_FILE="$0"
+if [ "$0" == "" ];then
+    APP_FILE="app.js"
+fi
+cp $CURRENT_DIR/../../../../js/$APP_FILE $SAMPLE_DIR/mobile/src/main/assets/app.js
+cd $SAMPLE_DIR
+
+./gradlew aR
+cp ./mobile/build/outputs/apk/mobile-release-unsigned.apk $OUTPUT_DIR
+cp ./wear/build/outputs/apk/mobile-release-unsigned.apk $OUTPUT_DIR
