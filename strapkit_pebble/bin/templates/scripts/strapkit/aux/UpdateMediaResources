@@ -6,6 +6,7 @@ import subprocess
 
 #TODO: recursively add meadia resources.
 #TODO: add support for font type detection. eg: .ttf is of type font
+#TODO: remove media from appinfo if not present in dir
 
 # code.py path/to/appinfo.json path/to/images path/to/fonts
 # Adds objects with the following structure to appinfo.json['resources']['media']
@@ -63,8 +64,14 @@ def read_media_from_disk(dirs):
 				if match:
 					fileName = match.group(1).upper()
 					ext = match.group(2)
-				fileRelPath = folder+'/'+fileName
-				path = subprocess.check_output(['readlink','-f',fileRelPath]).rstrip()
+
+				pathMatch = re.search(r'(images|fonts)(.+?$)',folder)
+				partialRelPath = ''
+				if pathMatch:
+					partialRelPath = pathMatch.group(1) + pathMatch.group(2)
+				path = partialRelPath.rstrip('/') +'/'+fileName
+				# SuppliedPath = folder+'/'+fileName
+				# path = subprocess.check_output(['readlink','-f',SuppliedPath]).rstrip()
 				fileEntry = {"type": ext, "name": fileName, "file": path}
 				fileEntries.append(fileEntry)
 	return fileEntries
