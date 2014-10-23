@@ -130,7 +130,10 @@ exports.spawn = function(cmd, args, opts) {
             }
             var err = new Error(errMsg);
             err.code = code;
-            d.reject(err);
+            // d.reject(err);
+            
+            //this prevent allow failing platforms from inhibiting subsequent squential platform builds
+            d.resolve(errMsg);
         }
     }
 
