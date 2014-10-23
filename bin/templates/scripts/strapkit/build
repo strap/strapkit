@@ -126,7 +126,7 @@ if [ ! -z ${1+x} ];then # if($1)
 fi
 RenameToAppJs $mainfile $appDir
 
-platformResources="$PROJECT_ROOT/pebble/"
+platformResources="$PROJECT_ROOT/resources/pebble/"
 appResources="$pblProj/resources/"
 SyncDirContents $platformResources $appResources
 
