@@ -20,13 +20,13 @@
 function isGitRepo (){
 	local dir=$1
 
-	cd $dir
-	local rv="false"
+	cd $dir > /dev/null
+	local rv="1"
 	if [ -d .git ];then
-		rv="true"
+		rv="0"
 	fi
-	cd -
-	echo $rv
+	cd - > /dev/null
+	return $rv
 }
 
 function GitInit (){
@@ -34,25 +34,26 @@ function GitInit (){
 
 	local gitignore="$STRAPKIT_PATH/aux/.gitignore"
 	
-	local STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
-
-	local topJsRepoStatus=$(isGitRepo $topJsDir)
-	if [  "$topJsRepoStatus" != "true" ];then
-		cd $topJsDir
+	local STRAPKIT_PATH=$( cd "$( > /dev/null dirname "$0" )" && pwd -P)
+	
+	isGitRepo $topJsDir
+	local topJsRepoStatus=$?
+	if [  "$topJsRepoStatus" -ne "0" ];then
+		cd $topJsDir > /dev/null
 		git init > /dev/null
-		echo "gitignore: $gitignore"
 		cp $gitignore $indexDir
-		cd -
+		cd - > /dev/null
 	fi
 
 	local internalJSDir=$2
 	
-	local internalJSRepoStatus=$(isGitRepo $internalJSDir)
-	if [ "$internalJSRepoStatus" != "true" ];then
-		cd $internalJSDir
+	isGitRepo $internalJSDir
+	local internalJSRepoStatus=$?
+	if [ "$internalJSRepoStatus" -ne "0" ];then
+		cd $internalJSDir > /dev/null
 		git init > /dev/null
 		git remote add origin $topJsDir > /dev/null
-		cd -
+		cd - > /dev/null
 	fi
 }
 
@@ -124,6 +125,16 @@ if [ ! -z ${1+x} ];then # if($1)
 	mainfile=$(basename $1)
 fi
 RenameToAppJs $mainfile $appDir
+
+platformResources="$PROJECT_ROOT/pebble/"
+appResources="$pblProj/resources/"
+SyncDirContents $platformResources $appResources
+
+appInfo="$pblProj/appinfo.json"
+UpdateMediaResources="$STRAPKIT_PATH/aux/UpdateMediaResources"
+imageResources="$pblProj/resources/images"
+fontResources="$pblProj/resources/fonts"
+$UpdateMediaResources $appInfo $imageResources $fontResources
 
 PebbleBuild $pblProj
 
