@@ -71,6 +71,8 @@ def read_media_from_disk(dirs):
 					if 'font' == pathMatch.group(1):
 						continue
 					partialRelPath = pathMatch.group(1) + pathMatch.group(2)
+				if 'tile_splash' == fileName:
+					continue
 				path = partialRelPath.rstrip('/') + '/' + fileName + '.' + ext
 				# SuppliedPath = folder+'/'+fileName
 				# path = subprocess.check_output(['readlink','-f',SuppliedPath]).rstrip()
