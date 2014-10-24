@@ -101,8 +101,9 @@ function RenameToAppJs (){
 
 function PebbleBuild (){
 	local pebbleproj=$1
-	cd $pebbleproj
+	cd $pebbleproj > /dev/null
 	pebble build
+	cd - > /dev/null
 }
 
 STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
@@ -132,6 +133,8 @@ SyncDirContents $platformResources $appResources
 
 appInfo="$pblProj/appinfo.json"
 UpdateMediaResources="$STRAPKIT_PATH/aux/UpdateMediaResources"
+# imageResources="$pblProj/resources/images"
+# fontResources="$pblProj/resources/fonts"
 imageResources="$pblProj/resources/images"
 fontResources="$pblProj/resources/fonts"
 $UpdateMediaResources $appInfo $imageResources $fontResources

@@ -62,17 +62,23 @@ def read_media_from_disk(dirs):
 				ext = ''
 				match = re.search(r'(.+?)\.(\w+?$)',fileName)
 				if match:
-					fileName = match.group(1).upper()
+					fileName = match.group(1)
 					ext = match.group(2)
 
-				pathMatch = re.search(r'(images|fonts)(.+?$)',folder)
+				pathMatch = re.search(r'resources/(\w+)(.+?$)',folder)
 				partialRelPath = ''
 				if pathMatch:
+					if 'font' == pathMatch.group(1):
+						continue
 					partialRelPath = pathMatch.group(1) + pathMatch.group(2)
-				path = partialRelPath.rstrip('/') +'/'+fileName
+					print "partialRelPath: %s" % partialRelPath
+				path = partialRelPath.rstrip('/') + '/' + fileName + '.' + ext
 				# SuppliedPath = folder+'/'+fileName
 				# path = subprocess.check_output(['readlink','-f',SuppliedPath]).rstrip()
-				fileEntry = {"type": ext, "name": fileName, "file": path}
+
+				cleanFileName =  re.sub(r'-','_',fileName.upper())
+				
+				fileEntry = {"type": ext, "name": cleanFileName, "file": path}
 				fileEntries.append(fileEntry)
 	return fileEntries
 
