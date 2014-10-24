@@ -89,6 +89,7 @@ function remove(hooks, projectRoot, targets, opts) {
     .then(function() {
         targets.forEach(function(target) {
             shell.rm('-rf', path.join(projectRoot, 'platforms', target));
+            shell.rm('-rf', path.join(projectRoot, 'resources',target));
             var plugins_json = path.join(projectRoot, 'plugins', target + '.json');
             if (fs.existsSync(plugins_json)) shell.rm(plugins_json);
         });
