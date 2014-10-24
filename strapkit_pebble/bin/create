@@ -123,8 +123,8 @@ mkdir $resources $platformResources
 images="$platformResources/images"
 fonts="$platformResources/fonts"
 mkdir $images $fonts
-resourcesJson="$platformResources/.resources.json"
-echo "{}" > $resourcesJson
+# resourcesJson="$platformResources/.resources.json"
+# echo "{}" > $resourcesJson
 
 # echo "PROJECT_PATH $PROJECT_PATH"
 # echo "PROJECT_PARENT $PROJECT_PARENT"
