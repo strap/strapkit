@@ -4,15 +4,6 @@ A cross platform development framework for wearables.
 
 Use ```strapkit``` to generate a new project with StrapMetrics built right in. More to follow.
 
-### Usage:
-
-See doc/help.txt
-
-
-# StrapKit JS
-
-Need some kind of introduction/overview of what StrapKit JS is. Marketing type of material.
-
 ## Version
 0.0.1
 
