@@ -9,20 +9,7 @@ Use ```strapkit``` to generate a new project with StrapMetrics built right in. M
 
 ## Installation
 
-You need Gulp installed globally:
-
-```sh
-$ npm i -g gulp
-```
-
-```sh
-$ git clone [git-repo-url] dillinger
-$ cd dillinger
-$ npm i -d
-$ mkdir -p public/files/{md,html,pdf}
-$ gulp build --prod
-$ NODE_ENV=production node app
-```
+Installation instructions coming soon...
 
 ## Write your first cross platform app
 
