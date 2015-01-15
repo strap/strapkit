@@ -26,7 +26,7 @@ $> sudo npm install strapkit -g
 ```
 
 ## Strapkit Flow
-----
+
 * Create your Strapkit project.
 ```bash
 $> strapkit create TestProject
