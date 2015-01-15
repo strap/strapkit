@@ -1,8 +1,8 @@
-StrapKit - Cross-Platform Tools for Wearable Developers
+Strap Kit - Cross-Platform Tools for Wearable Developers
 ----
 A cross platform development framework for wearables.
 
-Use ```strapkit``` to generate a new project with StrapMetrics built right in. More to follow.
+Use ```strapkit``` to generate a new project with Strap Metrics built right in. More to follow.
 
 ## Version
 0.0.1
@@ -10,6 +10,14 @@ Use ```strapkit``` to generate a new project with StrapMetrics built right in. M
 ## LICENSE
 
 See [LICENSE](LICENSE)
+
+## Checking Dependencies
+
+Strap Kit requires git, python, node, and npm at a minimum, and platform specific SDK's like Pebble and Android Wear to build for those platforms. To check your dependencies, you can run the command below (requires bash). For a full run down of how to install the dependencies, go to the <a href="https://docs.straphq.com" target="_blank">full developer docs</a>.
+
+```bash
+$> curl https://check-config.straphq.com | bash
+```
 
 ## Installation
 
