@@ -44,9 +44,14 @@ Command-line Flags/Options
 
 Example usage
 
-    $ strapkit create Boom
-    $ cd Boom
+    Basic Format of strapkit create
+    $ strapkit create <path_to_new_project> <package_name> <project_name> [config.xml]
+
+    $ strapkit create ~/Desktop/TestProject com.straphq.testproject TestProject ./configFile.xml
+    OR
+    $ strapkit create TestProject
+
+    $ cd TestProject
     $ strapkit platform add pebble
     $ strapkit build
     $ strapkit install pebble
-
