@@ -13,7 +13,9 @@ See [LICENSE](LICENSE)
 
 ## Installation
 
-Installation instructions coming soon...
+```bash
+sudo npm install strapkit -g
+```
 
 ## Write your first cross platform app
 
