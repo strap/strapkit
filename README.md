@@ -7,9 +7,15 @@ Use ```strapkit``` to generate a new project with StrapMetrics built right in. M
 ## Version
 0.0.1
 
+## LICENSE
+
+See [LICENSE](LICENSE)
+
 ## Installation
 
-Installation instructions coming soon...
+```bash
+$> sudo npm install strapkit -g
+```
 
 ## Write your first cross platform app
 
@@ -97,7 +103,7 @@ StrapKit.UI.TextView({
 });
 ```
 ### ListView
-ListView is a standard wearable UI compenent accross all platforms. This UI compenent will show a list of items defined by you. And Item will contain a title and a subtitle as strings. To make the app more interactive, you can attach an object to and Item as data. 
+ListView is a standard wearable UI compenent accross all platforms. This UI compenent will show a list of items defined by you. And Item will contain a title and a subtitle as strings. To make the app more interactive, you can attach an object to and Item as data.
 #### Example
 ```javascript
 var menuItems = [
@@ -111,13 +117,13 @@ var menuItems = [
         subtitle: 'My Subtitle 2',
         data: {info: "My Info 2"}
     }];
-    
+
 var resultsMenu = StrapKit.UI.ListView({
     items: menuItems
 });
 
 resultsMenu.setOnItemClick(function(e) {
-    console.log(JSON.stringify(e.item)); 
+    console.log(JSON.stringify(e.item));
     // { "title":"My Title 1","subtitle":"My Subtitle 1","data":{"info":"My Info 1"}}
     console.log(e.itemIndex);
     // 0
@@ -127,7 +133,7 @@ resultsMenu.setOnItemClick(function(e) {
 ```javascript
 myList.setOnItemClick(function(e) {
     e.item // returns the item you clicked on containing title, subtitle and data
-    e.itemIndex // returns the index of the item you clicked on 
+    e.itemIndex // returns the index of the item you clicked on
 });
 ```
 ### HttpClient
@@ -157,7 +163,7 @@ StrapKit.HttpClient({
 }, success, failure);
 ```
 ### Strap Metrics
-With StrapKit JS, adding Strap Metrics to your app is a breeze. 
+With StrapKit JS, adding Strap Metrics to your app is a breeze.
 #### Initialize
 Initializing Strap Metrics allows you to immediately get access to diagnostics and sensor data. You can then log events that are specific to your app.
 ```javascript
@@ -171,9 +177,3 @@ StrapKit.Metrics.logEvent("/myfirstevent/winning");
 var myInfo = {info: "This was easy"};
 StrapKit.Metrics.logEvent("/myfirstevent/data", myInfo);
 ```
-
-
-
-
-
-

@@ -1,38 +1,38 @@
- /*
-  Copyright 2014 EnSens, LLC D/B/A Strap
-  Portions derived from original source created by Apache Software Foundation.
- 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+/*
+Copyright 2014 EnSens, LLC D/B/A Strap
+Portions derived from original source created by Apache Software Foundation.
 
-        http://www.apache.org/licenses/LICENSE-2.0
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
- */
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
 
 var path = require('path'),
-    optimist, // required in try-catch below to print a nice error message if it's not installed.
-    help = require('./help'),
-    _;
+optimist, // required in try-catch below to print a nice error message if it's not installed.
+help = require('./help'),
+_;
 
 module.exports = function CLI(inputArgs) {
     try {
         optimist = require('optimist');
         _ = require('underscore');
     } catch (e) {
-        console.error("Please run npm install from this directory:\n\t" +
-                      path.dirname(__dirname));
+        console.error("Please run npm install from this directory:\n\t" + path.dirname(__dirname));
         process.exit(2);
     }
     var strapkit_lib = require('strapkit-lib'),
-        StrapkitError = strapkit_lib.StrapkitError,
-        strapkit = strapkit_lib.strapkit;
+    StrapkitError = strapkit_lib.StrapkitError,
+    strapkit = strapkit_lib.strapkit;
 
+    // console.log("iargs",inputArgs);//fixme
     // If no inputArgs given, use process.argv.
     var tokens;
     if (inputArgs) {
@@ -40,31 +40,30 @@ module.exports = function CLI(inputArgs) {
     } else {
         tokens = process.argv.slice(2);
     }
-
     // When changing command line arguments, update doc/help.txt accordingly.
     var args = optimist(tokens)
-        .boolean('d')
-        .boolean('verbose')
-        .boolean('v')
-        .boolean('version')
-        .boolean('silent')
-        .boolean('experimental')
-        .string('copy-from')
-        .alias('copy-from', 'src')
-        .string('link-to')
-        .string('searchpath')
-        .argv;
+    .boolean('d')
+    .boolean('verbose')
+    .boolean('v')
+    .boolean('version')
+    .boolean('silent')
+    .boolean('experimental')
+    .string('copy-from')
+    .alias('copy-from', 'src')
+    .string('link-to')
+    .string('searchpath')
+    .argv;
 
     if (args.v || args.version) {
         return console.log(require('../package').version);
     }
 
     var opts = {
-            platforms: [],
-            options: [],
-            verbose: (args.d || args.verbose),
-            silent: args.silent,
-        };
+        platforms: [],
+        options: [],
+        verbose: (args.d || args.verbose),
+        silent: args.silent,
+    };
 
     // For StrapkitError print only the message without stack trace.
     process.on('uncaughtException', function(err){
@@ -114,7 +113,7 @@ module.exports = function CLI(inputArgs) {
         throw new StrapkitError('StrapKit does not know ' + cmd + '; try help for a list of all the available commands.');
     }
 
-    if (cmd == 'emulate' || cmd == 'build' || cmd == 'prepare' || cmd == 'compile' || cmd == 'run') {
+    if (cmd == 'install' || cmd == 'emulate' || cmd == 'build' || cmd == 'prepare' || cmd == 'compile' || cmd == 'run') {
         // Filter all non-platforms into options
         var platforms = strapkit_lib.strapkit_platforms;
         tokens.forEach(function(option, index) {
@@ -127,7 +126,9 @@ module.exports = function CLI(inputArgs) {
         strapkit.raw[cmd].call(this, opts).done();
     } else if (cmd == 'serve') {
         strapkit.raw[cmd].apply(this, tokens).done();
-    } else if (cmd == 'create') {
+    } else if (cmd == 'refresh') {
+        strapkit.raw[cmd].call(this, opts).done();
+    }  else if (cmd == 'create') {
         var cfg = {};
         // If we got a forth parameter, consider it to be JSON to init the config.
         if (args._[4]) {

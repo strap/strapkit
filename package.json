@@ -1,6 +1,6 @@
 {
     "name": "strapkit",
-    "version": "0.1.0",
+    "version": "0.1.5",
     "description": "Write once, deploy everyWear. Cross platform development tools for wearables.",
     "bin": {
         "strapkit": "./bin/strapkit"
@@ -16,7 +16,7 @@
         "url": "https://github.com/strap/strapkit"
     },
     "dependencies": {
-      "strapkit-lib":"0.1.0",
+      "strapkit-lib":"0.1.3",
       "q": "~0.9",
       "optimist": "0.6.0",
       "underscore": "1.4.4"
