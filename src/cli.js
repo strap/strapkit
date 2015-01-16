@@ -21,6 +21,8 @@ exec = require('child_process').exec,
 optimist, // required in try-catch below to print a nice error message if it's not installed.
 help = require('./help'),
 Analytics = require('analytics-node'),
+crypto = require('crypto'),
+md5sum = crypto.createHash('md5'),
 _;
 
 var uid = 'foo';
@@ -126,10 +128,10 @@ module.exports = function CLI(inputArgs) {
         uid = stdout; 
 
         // send CLI event to segment
-        analytics.track({userId:uid.trim(),event:cmd[0],properties:{args:args,tokens:tokens}});
+        analytics.track({userId:md5sum.update(uid.trim()).digest("hex"),event:cmd[0],properties:{args:args,tokens:tokens}});
     }
 
-    exec("echo `whoami;uname -a`|md5",setUID);
+    exec('echo `whoami;uname -a`',setUID);
     
 
 
