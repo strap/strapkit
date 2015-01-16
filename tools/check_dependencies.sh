@@ -59,12 +59,12 @@ echo 'Checking android'
 echo "==============================="
 echo 'Checking ANDROID_HOME env variable'
 if [ "$ANDROID_HOME" ]; then green_highlight 'ANDROID_HOME is set.'; else show_error '!!! ANDROID_HOME is not set.'; fi
-    echo "==============================="
-    echo 'Checking JAVA_HOME env variable'
-    if [ "$JAVA_HOME" ]; then green_highlight 'JAVA_HOME is set.'; else show_error '!!! JAVA_HOME is not set.'; fi
+echo "==============================="
+echo 'Checking JAVA_HOME env variable'
+if [ "$JAVA_HOME" ]; then green_highlight 'JAVA_HOME is set.'; else show_error '!!! JAVA_HOME is not set.'; fi
 
-        echo "+++++++++++++++++++++++++++++++"
-        echo "++++++      RESULTS      ++++++"
-        echo "+++++++++++++++++++++++++++++++"
-        ([ $MISSINGDEPS -ne 0 ] && show_error '!!! One or more dependencies were not found. Visit https://docs.straphq.com for more info on setting up the dependencies.' || echo 'Congrats, your machine is ready for some live action.')
-        echo -e "\n"
+echo "+++++++++++++++++++++++++++++++"
+echo "++++++      RESULTS      ++++++"
+echo "+++++++++++++++++++++++++++++++"
+([ $MISSINGDEPS -ne 0 ] && show_error '!!! One or more dependencies were not found. Visit https://docs.straphq.com for more info on setting up the dependencies.' || echo 'Congrats, your machine is ready for some live action.')
+echo -e "\n"
