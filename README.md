@@ -41,7 +41,7 @@ $> strapkit create ./TestProject com.testproject TestProject
 * Choose deployment platforms.
 
 ```bash
-$> strapkit platforms add pebble android-wear
+$> strapkit platform add pebble android-wear
 ```
 OR, to add just one platform only, you may specify that platform by itself.
 ```bash
@@ -64,6 +64,10 @@ If you wish to forego using Strap kit to install your app, the compiled binary o
 
 * Install to device.
 ```bash
+# When not using pebble
+$> strapkit install
+
+# IP Required for pebble
 $> strapkit install Phones.IP.Goes.Here
 ```
 Publish 'n' Profit!
