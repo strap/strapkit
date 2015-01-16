@@ -9,7 +9,6 @@ echo '
 
 echo -e '\nStrap Kit Dependency Checker'
 MISSINGDEPS=0
-ANDROIDGOOD=1
 
 show_error() {
     MISSINGDEPS=1
