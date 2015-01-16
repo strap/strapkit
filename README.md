@@ -25,7 +25,7 @@ $> curl http://check-config.straphq.com | bash
 $> sudo npm install strapkit -g
 ```
 
-## Strapkit Flow
+## Using the CLI
 
 * Create your Strapkit project.
 ```bash
