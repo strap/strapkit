@@ -25,7 +25,7 @@ $> curl http://check-config.straphq.com | bash
 $> sudo npm install strapkit -g
 ```
 
-## Strapkit Flow
+## Using the CLI
 
 * Create your Strapkit project.
 ```bash
@@ -36,9 +36,10 @@ OR
 $> strapkit create ./TestProject com.testproject TestProject
 ```
 
-* Write your app using the API documentation below.
+```strapkit create``` generates a starter app.js in ./TestProject/js. This is where you write your app using the API documentation below.
 
 * Choose deployment platforms.
+
 ```bash
 $> strapkit platforms add pebble android-wear
 ```
