@@ -1,5 +1,5 @@
 /*
-Copyright 2014 EnSens, LLC D/B/A Strap
+Copyright 2015 Strap, LLC
 Portions derived from original source created by Apache Software Foundation.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,10 @@ limitations under the License.
 var path = require('path'),
 optimist, // required in try-catch below to print a nice error message if it's not installed.
 help = require('./help'),
+Analytics = require('analytics-node'),
 _;
+
+analytics = new Analytics('7ywaVzd3Em3lT02NMgt8axMpV4wYFOCg', {flushAt: 1});
 
 module.exports = function CLI(inputArgs) {
     try {
@@ -65,6 +68,7 @@ module.exports = function CLI(inputArgs) {
         silent: args.silent,
     };
 
+
     // For StrapkitError print only the message without stack trace.
     process.on('uncaughtException', function(err){
         if (err instanceof StrapkitError) {
@@ -109,8 +113,10 @@ module.exports = function CLI(inputArgs) {
         return help();
     }
 
+    analytics.track({userId:'1',event:cmd[0],properties:{args:args,tokens:tokens}});
+
     if (!strapkit.hasOwnProperty(cmd)) {
-        throw new StrapkitError('StrapKit does not know ' + cmd + '; try help for a list of all the available commands.');
+        throw new StrapkitError('Strap Kit does not know ' + cmd + '; try help for a list of all the available commands.');
     }
 
     if (cmd == 'install' || cmd == 'emulate' || cmd == 'build' || cmd == 'prepare' || cmd == 'compile' || cmd == 'run') {
