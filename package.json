@@ -1,6 +1,6 @@
 {
   "name": "strapkit",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "description": "Write once, deploy everyWear. Cross platform development tools for wearables.",
   "bin": {
     "strapkit": "./bin/strapkit"
