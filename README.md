@@ -232,3 +232,29 @@ StrapKit.Metrics.logEvent("/myfirstevent/winning");
 var myInfo = {info: "This was easy"};
 StrapKit.Metrics.logEvent("/myfirstevent/data", myInfo);
 ```
+
+### Location
+StrapKit JS can leverage native geolocation in Javascript to get the location of the device. A callback can be used to extract the `position` from the successful function. The generic form of this method is:
+
+```
+navigator.geolocation.getCurrentPosition(success, failure, options);
+```
+
+#### Example
+```
+if (navigator && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        console.log("Got geolocation!");
+
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+
+    }, function() {
+        console.log("Failed to get geolocation!");
+    }, {
+        maximumAge: 50000,
+        timeout: 5000,
+        enableHighAccuracy: true
+    });
+}
+```
