@@ -112,7 +112,9 @@ page.show();
 ```
 
 ### Card View
-Card is a standard wearable UI compenent accross all platforms. This UI compenent typically has a title and a body associated with it, and can be clickable. This must be added to a Page in order for the compenent to be shown.
+Card is a standard wearable UI component across all platforms. This UI
+component typically has a title and a body associated with it, and can be
+clickable. This must be added to a Page in order for the component to be shown.
 
 #### Example
 ```javascript
@@ -139,7 +141,9 @@ card.setOnClick(function() {
 });
 ```
 ### TextView
-TextView is a standard wearable UI compenent accross all platforms. This UI compenent can show text and a position of your your choosing.
+TextView is a standard wearable UI component across all platforms. This UI
+component can show text and a position of your your choosing.
+
 #### Example
 ```javascript
 var textView = StrapKit.UI.TextView({
@@ -154,11 +158,15 @@ StrapKit.UI.TextView({
     position: 'center|right|left'
     // center: puts text center justified within your page
     // right: puts text right justified within your page
-    // left (default): puts text left justificed within your page
+    // left (default): puts text left justified within your page
 });
 ```
 ### ListView
-ListView is a standard wearable UI compenent accross all platforms. This UI compenent will show a list of items defined by you. And Item will contain a title and a subtitle as strings. To make the app more interactive, you can attach an object to and Item as data.
+ListView is a standard wearable UI competent across all platforms. This UI
+component will show a list of items defined by you. And Item will contain a
+title and a subtitle as strings. To make the app more interactive, you can
+attach an object to and Item as data.
+
 #### Example
 ```javascript
 var menuItems = [
@@ -214,7 +222,7 @@ StrapKit.HttpClient({
   // url: url to call
   // method: 'POST', 'GET', 'UPDATE', etc
   // data: { 'username': 'myUsername'}
-  // heaaders: { 'Authorization': 'Token: 0sdknweeksokdf0'}
+  // headers: { 'Authorization': 'Token: 0sdknweeksokdf0'}
 }, success, failure);
 ```
 ### Strap Metrics

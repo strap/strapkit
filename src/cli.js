@@ -27,8 +27,7 @@ _;
 
 var uid = 'foo';
 
-
-analytics = new Analytics('7ywaVzd3Em3lT02NMgt8axMpV4wYFOCg', {flushAt: 1});
+var analytics = new Analytics('7ywaVzd3Em3lT02NMgt8axMpV4wYFOCg', {flushAt: 1});
 
 module.exports = function CLI(inputArgs) {
     try {
@@ -122,18 +121,16 @@ module.exports = function CLI(inputArgs) {
 
 
     // set a unique identifier for user
-    function setUID(error, stdout, stderr) { 
-        if (error) {throw error;} 
-        // console.log(stderr); console.log(stdout); 
-        uid = stdout; 
+    function setUID(error, stdout, stderr) {
+        if (error) {throw error;}
+        // console.log(stderr); console.log(stdout);
+        uid = stdout;
 
         // send CLI event to segment
         analytics.track({userId:md5sum.update(uid.trim()).digest("hex"),event:cmd[0],properties:{args:args,tokens:tokens}});
     }
 
     exec('echo `whoami;uname -a`',setUID);
-    
-
 
     if (!strapkit.hasOwnProperty(cmd)) {
         throw new StrapkitError('Strap Kit does not know ' + cmd + '; try help for a list of all the available commands.');
