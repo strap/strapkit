@@ -27,7 +27,8 @@ _;
 
 var uid = 'foo';
 
-var analytics = new Analytics('7ywaVzd3Em3lT02NMgt8axMpV4wYFOCg', {flushAt: 1});
+
+analytics = new Analytics('7ywaVzd3Em3lT02NMgt8axMpV4wYFOCg', {flushAt: 1});
 
 module.exports = function CLI(inputArgs) {
     try {
@@ -121,16 +122,18 @@ module.exports = function CLI(inputArgs) {
 
 
     // set a unique identifier for user
-    function setUID(error, stdout, stderr) {
-        if (error) {throw error;}
-        // console.log(stderr); console.log(stdout);
-        uid = stdout;
+    function setUID(error, stdout, stderr) { 
+        if (error) {throw error;} 
+        // console.log(stderr); console.log(stdout); 
+        uid = stdout; 
 
         // send CLI event to segment
         analytics.track({userId:md5sum.update(uid.trim()).digest("hex"),event:cmd[0],properties:{args:args,tokens:tokens}});
     }
 
     exec('echo `whoami;uname -a`',setUID);
+    
+
 
     if (!strapkit.hasOwnProperty(cmd)) {
         throw new StrapkitError('Strap Kit does not know ' + cmd + '; try help for a list of all the available commands.');
@@ -151,6 +154,8 @@ module.exports = function CLI(inputArgs) {
         strapkit.raw[cmd].apply(this, tokens).done();
     } else if (cmd == 'refresh') {
         strapkit.raw[cmd].call(this, opts).done();
+    } else if (cmd == 'clean') {
+	strapkit.raw[cmd].call(this, opts).done();
     }  else if (cmd == 'create') {
         var cfg = {};
         // If we got a forth parameter, consider it to be JSON to init the config.
