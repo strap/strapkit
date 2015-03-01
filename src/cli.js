@@ -23,6 +23,7 @@ help = require('./help'),
 Analytics = require('analytics-node'),
 crypto = require('crypto'),
 md5sum = crypto.createHash('md5'),
+fs = require('fs'),
 _;
 
 var uid = 'foo';
@@ -130,6 +131,24 @@ module.exports = function CLI(inputArgs) {
         analytics.track({userId:md5sum.update(uid.trim()).digest("hex"),event:cmd[0],properties:{args:args,tokens:tokens}});
     }
 
+    // remove files or directory
+    function rm(path) {
+        if (fs.statSync(path).isFile()) {
+            fs.unlinkSync(path);
+            return;
+        }
+        var files = fs.readdirSync(path);
+        if (files.length > 0)
+            for (var i = 0; i < files.length; i++) {
+                var filePath = path + '/' + files[i];
+                if (fs.statSync(filePath).isFile())
+                    fs.unlinkSync(filePath);
+                else
+                    rm(filePath);
+            }
+        fs.rmdirSync(path);
+    }
+
     exec('echo `whoami;uname -a`',setUID);
 
     if (!strapkit.hasOwnProperty(cmd)) {
@@ -175,6 +194,9 @@ module.exports = function CLI(inputArgs) {
         }
         // create(dir, id, name, cfg)
         strapkit.raw[cmd].call(this, args._[1], args._[2], args._[3], cfg).done();
+    } else if (cmd == 'delete') {
+        var path = args._[3];
+        rm(path);
     } else if (cmd == 'help') {
         return help();
     } else {
