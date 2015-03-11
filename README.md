@@ -199,6 +199,11 @@ myList.setOnItemClick(function(e) {
     e.itemIndex // returns the index of the item you clicked on
 });
 ```
+## Deletion
+
+```bash
+$> strapkit delete TestProject
+```
 ### HttpClient
 HttpClient allows you to access API clients outside of the wearable app.
 #### Example
